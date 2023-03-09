@@ -7,7 +7,14 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v3
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v1
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
       - name: build arm32v7
-        uses: ./
-      # - name: build amd64
-      #   uses: ./action-amd64.yml
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          tags: ${{ github.repository }}-cross-compile:latest-arm32v7
+          file: ./Dockerfile-arm32v7

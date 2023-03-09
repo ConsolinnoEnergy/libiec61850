@@ -1,5 +1,0 @@
-name: "Build Debian Packages"
-description: "Build Debian packages for the latest release"
-runs:
-  using: "docker"
-  image: "Dockerfile"
