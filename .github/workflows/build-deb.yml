@@ -16,6 +16,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           push: false
+          context: .
+          load: true
           tags: cross-compile:latest-arm32v7
           file: ./Dockerfile-arm32v7
       - name: mkdir build-arm32v7
