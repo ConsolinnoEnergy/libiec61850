@@ -20,12 +20,29 @@ jobs:
           load: true
           tags: cross-compile:latest-arm32v7
           file: ./Dockerfile-arm32v7
+      - name: build amd64
+        uses: docker/build-push-action@v4
+        with:
+          push: false
+          context: .
+          load: true
+          tags: cross-compile:latest-amd64
+          file: ./Dockerfile-amd64
       - name: mkdir build-arm32v7
         run: mkdir build-arm32v7
-      - name: run arm32v7
+      - name: mkdir build-amd64
+        run: mkdir build-amd64
+      - name: run arm32v7 build
         run: docker run --rm -v $PWD/build-arm32v7:/build -v $PWD:/src cross-compile:latest-arm32v7
+      - name: run amd64 build
+        run: docker run --rm -v $PWD/build-amd64:/build -v $PWD:/src cross-compile:latest-amd64
       - name: artifact .deb file from build-arm32v7
         uses: actions/upload-artifact@v2
         with:
           name: build-arm32v7
           path: build-arm32v7/*.deb
+      - name: artifact .deb file from build-amd64
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-amd64
+          path: build-amd64/*.deb
