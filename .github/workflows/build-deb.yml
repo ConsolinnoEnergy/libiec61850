@@ -8,6 +8,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v3
       - name: build arm32v7
-        uses: ./action.yml
-      - name: build amd64
-        uses: ./action-amd64.yml
+        uses: ./
+      # - name: build amd64
+      #   uses: ./action-amd64.yml
