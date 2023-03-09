@@ -24,3 +24,8 @@ jobs:
         run: mkdir build-arm32v7
       - name: run arm32v7
         run: docker run --rm -v $PWD/build-arm32v7:/build -v $PWD:/src cross-compile:latest-arm32v7
+      - name: artifact .deb file from build-arm32v7
+        uses: actions/upload-artifact@v2
+        with:
+          name: build-arm32v7
+          path: build-arm32v7/*.deb
