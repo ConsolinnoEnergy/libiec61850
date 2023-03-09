@@ -37,12 +37,12 @@ jobs:
       - name: run amd64 build
         run: docker run --rm -v $PWD/build-amd64:/build -v $PWD:/src cross-compile:latest-amd64
       - name: artifact .deb file from build-arm32v7
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-arm32v7
           path: build-arm32v7/*.deb
       - name: artifact .deb file from build-amd64
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: build-amd64
           path: build-amd64/*.deb
