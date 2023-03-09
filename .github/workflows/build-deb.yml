@@ -1,0 +1,11 @@
+on: [push]
+
+jobs:
+  build_deb_job:
+    runs-on: ubuntu-latest
+    name: A job to build deb packages
+    steps:
+      - name: build arm32v7
+        uses: ../actions/action-arm32v7
+      - name: build amd64
+        uses: ../actions/action-amd64

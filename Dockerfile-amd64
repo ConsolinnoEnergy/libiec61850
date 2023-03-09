@@ -1,7 +1,9 @@
-ARG AARCH=arm32v7
+ARG AARCH=amd64
 FROM ${AARCH}/debian:buster-slim
 RUN apt-get update && apt-get install build-essential cmake --no-install-recommends -y
-WORKDIR /build
+# copy entrypoint
+COPY entrypoint.sh /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
 
 # prepare:
 # export AARCH=arm32v7

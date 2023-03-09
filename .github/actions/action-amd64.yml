@@ -1,0 +1,8 @@
+name: "Build Debian Packages"
+description: "Build Debian packages for the latest release"
+on:
+  push:
+    branches: [v1.5]
+runs:
+  using: "docker"
+  image: "Dockerfile-amd64"
