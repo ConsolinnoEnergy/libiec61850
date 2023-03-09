@@ -5,5 +5,4 @@ on:
     branches: [v1.5]
 runs:
   using: "docker"
-  image: "Dockerfile"
-  path: "Dockerfile-arm32v7"
+  image: "./Dockerfile-arm32v7"

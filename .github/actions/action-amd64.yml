@@ -5,6 +5,4 @@ on:
     branches: [v1.5]
 runs:
   using: "docker"
-  image: "Dockerfile"
-  # dockerfile path
-  path: "Dockerfile-amd64"
+  image: "./Dockerfile-amd64"
