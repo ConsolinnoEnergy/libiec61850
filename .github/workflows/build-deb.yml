@@ -18,3 +18,7 @@ jobs:
           push: false
           tags: ${{ github.repository }}-cross-compile:latest-arm32v7
           file: ./Dockerfile-arm32v7
+      - name: mkdir build-arm32v7
+        run: mkdir build-arm32v7
+      - name: run arm32v7
+        run: docker run --rm -v $PWD/build-arm32v7:/build -v $PWD:/src ${{ github.repository }}-cross-compile:latest-arm32v7
