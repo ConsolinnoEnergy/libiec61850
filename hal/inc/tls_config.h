@@ -73,7 +73,7 @@ typedef enum {
     TLS_SEC_EVT_INFO = 0,
     TLS_SEC_EVT_WARNING = 1,
     TLS_SEC_EVT_INCIDENT = 2
-} TLSConfiguration_EventLevel;
+} TLSEventLevel;
 
 #define TLS_EVENT_CODE_ALM_ALGO_NOT_SUPPORTED 1
 #define TLS_EVENT_CODE_ALM_UNSECURE_COMMUNICATION 2
@@ -88,7 +88,8 @@ typedef enum {
 #define TLS_EVENT_CODE_ALM_CERT_EXPIRED 11
 #define TLS_EVENT_CODE_ALM_CERT_REVOKED 12
 #define TLS_EVENT_CODE_ALM_CERT_NOT_CONFIGURED 13
-#define TLS_EVENT_CODE_ALM_CERT_NOT_TRUSTED 12
+#define TLS_EVENT_CODE_ALM_CERT_NOT_TRUSTED 14
+#define TLS_EVENT_CODE_ALM_NO_CIPHER 15
 
 typedef struct sTLSConnection* TLSConnection;
 
@@ -124,7 +125,7 @@ TLSConnection_getPeerCertificate(TLSConnection self, int* certSize);
 PAL_API TLSConfigVersion
 TLSConnection_getTLSVersion(TLSConnection self);
 
-typedef void (*TLSConfiguration_EventHandler)(void* parameter, TLSConfiguration_EventLevel eventLevel, int eventCode, const char* message, TLSConnection con);
+typedef void (*TLSConfiguration_EventHandler)(void* parameter, TLSEventLevel eventLevel, int eventCode, const char* message, TLSConnection con);
 
 /**
  * \brief Set the security event handler
@@ -295,6 +296,12 @@ TLSConfiguration_addCRL(TLSConfiguration self, uint8_t* crl, int crlLen);
  */
 PAL_API bool
 TLSConfiguration_addCRLFromFile(TLSConfiguration self, const char* filename);
+
+/**
+ * \brief Removes any CRL (certificate revocation list) currently in use
+ */
+PAL_API void
+TLSConfiguration_resetCRL(TLSConfiguration self);
 
 /**
  * Release all resource allocated by the TLSConfiguration instance
